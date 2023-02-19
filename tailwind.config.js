@@ -11,20 +11,22 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-satoshi)', ...defaultTheme.fontFamily.sans],
       },
     },
     colors: {
-      ...colors.zinc,
+      transparent: colors.transparent,
+      zinc: colors.zinc,
       black: '#000000',
       white: '#ffffff',
       role: {
-        mage: '#64AAF7',
-        fighter: '#AF322B',
+        all: colors.zinc[50],
         assassin: '#6B00A5',
-        marksmen: '#E7D45E',
+        fighter: '#AF322B',
+        mage: '#64AAF7',
+        marksman: '#E7D45E',
+        support: '#B5D6DF',
         tank: '#B2D251',
-        support: '#E7FFFF',
       },
     },
   },
