@@ -1,16 +1,19 @@
-import { Inter } from '@next/font/google';
+import localFont from '@next/font/local';
+
+const fontSatoshi = localFont({
+  src: '../fonts/Satoshi-Variable.ttf',
+  variable: '--font-satoshi',
+});
 
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={fontSatoshi.variable}>
       <head />
       <body>{children}</body>
     </html>
