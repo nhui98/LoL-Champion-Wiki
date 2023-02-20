@@ -11,7 +11,7 @@ export async function fetchChampionSummaryData() {
 
     if (!data || !data.length) return null;
 
-    return data;
+    return data.filter((champ) => champ.id > 0);
   } catch (error) {
     console.log('fetchChampionSummaryData() error:', error);
     return null;
