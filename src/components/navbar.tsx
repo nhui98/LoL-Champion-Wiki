@@ -137,27 +137,37 @@ function NavFilter() {
                 />
               </div>
             </Listbox.Button>
-            <Listbox.Options className="absolute top-[62px] -right-[2px] z-10 max-h-60 w-full overflow-auto border-[2px] border-t-0 border-zinc-500 bg-zinc-50 py-1 text-base shadow-lg">
-              {(Object.keys(filterLinks) as (keyof typeof filterLinks)[]).map(
-                (key) => (
-                  <Listbox.Option
-                    key={key}
-                    value={key}
-                    className={({ selected, active }) =>
-                      clsx(
-                        'relative cursor-default select-none py-2 pr-4 pl-2 text-sm tracking-wide transition-colors duration-150',
-                        selected
-                          ? 'bg-role-mage text-zinc-50'
-                          : 'text-zinc-900',
-                        !selected && active && 'bg-role-mage/70'
-                      )
-                    }
-                  >
-                    {filterLinks[key]}
-                  </Listbox.Option>
-                )
-              )}
-            </Listbox.Options>
+            <Transition
+              as={Fragment}
+              enter="transition duration-200 ease-out"
+              enterFrom="transform translate-y-2 opacity-0"
+              enterTo="transform translate-y-0 opacity-100"
+              leave="transition duration-150 ease-out"
+              leaveFrom="transform translate-y-0 opacity-100"
+              leaveTo="transform translate-y-2 opacity-0"
+            >
+              <Listbox.Options className="absolute top-[62px] -right-[2px] z-10 max-h-60 w-full overflow-auto border-[2px] border-t-0 border-zinc-500 bg-zinc-50 py-1 text-base shadow-lg">
+                {(Object.keys(filterLinks) as (keyof typeof filterLinks)[]).map(
+                  (key) => (
+                    <Listbox.Option
+                      key={key}
+                      value={key}
+                      className={({ selected, active }) =>
+                        clsx(
+                          'relative cursor-default select-none py-2 pr-4 pl-2 text-sm tracking-wide transition-colors duration-150',
+                          selected
+                            ? 'bg-role-mage text-zinc-50'
+                            : 'text-zinc-900',
+                          !selected && active && 'bg-role-mage/70'
+                        )
+                      }
+                    >
+                      {filterLinks[key]}
+                    </Listbox.Option>
+                  )
+                )}
+              </Listbox.Options>
+            </Transition>
           </div>
         )}
       </Listbox>
