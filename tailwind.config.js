@@ -29,6 +29,12 @@ module.exports = {
         tank: '#B2D251',
       },
     },
+    dropShadow: {
+      large: [
+        '20px 20px 100px rgba(0,0,0,0.25)',
+        '-4px -4px 16px rgba(0,0,0,0.05)',
+      ],
+    },
   },
   plugins: [],
 };
