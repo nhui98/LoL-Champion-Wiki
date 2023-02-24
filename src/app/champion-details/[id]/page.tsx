@@ -14,7 +14,7 @@ export default async function ChampionDetails({
 
   return (
     <main>
-      <div className="grid grid-cols-12">
+      <div className="grid min-h-screen grid-cols-12">
         <div className="col-span-5">
           <Details championData={championData} />
         </div>

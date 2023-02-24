@@ -9,6 +9,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn.communitydragon.org',
       },
+      {
+        protocol: 'https',
+        hostname: 'raw.communitydragon.org',
+      },
     ],
   },
 };

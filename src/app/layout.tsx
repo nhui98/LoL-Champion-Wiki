@@ -16,7 +16,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className={fontSatoshi.variable}>
       <head />
-      <body className="overflow-y-scroll">{children}</body>
+      <body className="no-scrollbar overflow-y-scroll">{children}</body>
     </html>
   );
 }

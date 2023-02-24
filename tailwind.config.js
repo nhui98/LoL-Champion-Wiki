@@ -30,6 +30,10 @@ module.exports = {
       },
     },
     dropShadow: {
+      xlarge: [
+        '40px 40px 100px rgba(0,0,0,0.25)',
+        '-40px -40px 40px rgba(0,0,0,0.25)',
+      ],
       large: [
         '20px 20px 100px rgba(0,0,0,0.25)',
         '-4px -4px 16px rgba(0,0,0,0.05)',

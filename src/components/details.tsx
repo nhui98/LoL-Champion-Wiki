@@ -9,7 +9,7 @@ export default function Details({ championData }: DetailsProps) {
   const { id, shortBio, roles, playstyleInfo } = championData;
 
   return (
-    <div>
+    <section>
       <header>
         <div className="mt-10 flex justify-between px-8">
           <div>
@@ -88,7 +88,7 @@ export default function Details({ championData }: DetailsProps) {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
