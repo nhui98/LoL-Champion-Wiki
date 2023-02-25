@@ -54,7 +54,5 @@ export function fetchChampionAbility(championId: number, ability: AbilityKey) {
 }
 
 export function fetchAbilityVideo(path: string | undefined) {
-  if (!path) return '';
-
   return `https://d28xe8vt774jo5.cloudfront.net/${path}`;
 }

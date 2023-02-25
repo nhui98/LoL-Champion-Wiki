@@ -22,13 +22,7 @@ export interface ChampionData extends ChampionSummary {
     difficulty: number;
     damageType: 'string';
   };
-  playstyleInfo: {
-    damage: number;
-    durability: number;
-    crowdControl: number;
-    mobility: number;
-    utility: number;
-  };
+  playstyleInfo: PlaystyleInfo;
   skins: Skin[];
   passive: Passive;
   spells: Spell[];
@@ -95,3 +89,11 @@ export type Spell = {
 };
 
 export type AbilityKey = 'p' | 'q' | 'w' | 'e' | 'r';
+
+export type PlaystyleInfo = {
+  damage: number;
+  durability: number;
+  crowdControl: number;
+  mobility: number;
+  utility: number;
+};
