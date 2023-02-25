@@ -93,3 +93,5 @@ export type Spell = {
   };
   maxLevel: number;
 };
+
+export type AbilityKey = 'p' | 'q' | 'w' | 'e' | 'r';

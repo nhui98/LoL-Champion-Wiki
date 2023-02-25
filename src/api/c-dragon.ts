@@ -1,5 +1,5 @@
 import { kCDragon, kCDragonCDN, kCDragonRaw, kPatch } from '@/config/constants';
-import { ChampionData, ChampionSummary } from '@/types';
+import { AbilityKey, ChampionData, ChampionSummary } from '@/types';
 
 export async function fetchChampionSummaryData() {
   try {
@@ -47,4 +47,14 @@ export function fetchChampionSplash(championId: number, skinId: number) {
 
 export function fetchChampionTile(championId: number, skinId: number) {
   return `${kCDragonRaw}/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-tiles/${championId}/${skinId}.jpg`;
+}
+
+export function fetchChampionAbility(championId: number, ability: AbilityKey) {
+  return `${kCDragonCDN}/latest/champion/${championId}/ability-icon/${ability}`;
+}
+
+export function fetchAbilityVideo(path: string | undefined) {
+  if (!path) return '';
+
+  return `https://d28xe8vt774jo5.cloudfront.net/${path}`;
 }
