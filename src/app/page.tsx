@@ -11,7 +11,6 @@ export default async function Home() {
       <main className="relative">
         <Navbar championData={championData} />
         <Banner />
-        {/* @ts-ignore */}
         <ChampionList championData={championData} />
         <footer className="mt-40"></footer>
       </main>

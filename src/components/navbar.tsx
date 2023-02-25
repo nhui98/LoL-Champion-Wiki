@@ -2,10 +2,11 @@
 
 import { useChampionList } from '@/hooks/use-champion-list';
 import { useStore } from '@/store/zustand';
-import { ChampionSummary, Role } from '@/types';
+import { ChampionSummary } from '@/types';
 import { Combobox, Transition, Listbox } from '@headlessui/react';
 import clsx from 'clsx';
 import { Fragment, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const filterLinks = {
   all: 'ALL',
@@ -53,7 +54,14 @@ export default function Navbar({
         );
 
   return (
-    <header className="absolute top-[500px] left-1/2 z-50 w-full max-w-5xl -translate-x-1/2 px-4 sm:px-8 lg:max-w-7xl">
+    <motion.header
+      className="absolute top-[500px] left-1/2 z-50 w-full max-w-5xl -translate-x-1/2 px-4 sm:px-8 lg:max-w-7xl"
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+        transition: { duration: 0.5, delay: 1 },
+      }}
+    >
       <div className="flex h-16 items-center justify-between border-2 border-zinc-500">
         <Combobox value={searchFilter} onChange={setSearchFilter} nullable>
           <div className="relative">
@@ -111,7 +119,7 @@ export default function Navbar({
 
         <NavFilter />
       </div>
-    </header>
+    </motion.header>
   );
 }
 
