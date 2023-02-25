@@ -9,7 +9,7 @@ export default function Details({ championData }: DetailsProps) {
   const { id, shortBio, roles, playstyleInfo } = championData;
 
   return (
-    <section>
+    <section className="pb-20">
       <header>
         <div className="mt-10 flex justify-between px-8">
           <div>
@@ -40,8 +40,8 @@ export default function Details({ championData }: DetailsProps) {
         </div>
       </header>
 
-      <div className="mt-20 px-8">
-        <div className="mx-auto flex max-w-lg flex-col gap-4 border border-zinc-50 bg-white p-8 drop-shadow-large">
+      <div className="mt-20 px-4 sm:px-8">
+        <div className="mx-auto flex max-w-lg flex-col gap-4 border border-zinc-50 bg-white px-4 py-8 drop-shadow-large sm:px-8">
           <div>
             <div className="text-lg font-bold">Description</div>
             <p className="mt-2 font-medium">{shortBio}</p>

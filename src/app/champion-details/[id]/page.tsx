@@ -14,12 +14,12 @@ export default async function ChampionDetails({
 
   return (
     <main>
-      <div className="grid min-h-screen grid-cols-12">
-        <div className="col-span-5">
-          <Details championData={championData} />
-        </div>
-        <div className="col-span-7">
+      <div className="grid h-full grid-cols-1 lg:grid-cols-12">
+        <div className="h-full lg:col-start-6 lg:col-end-13 lg:row-start-1 lg:row-end-1">
           <Skins championData={championData} />
+        </div>
+        <div className="lg:col-start-1 lg:col-end-6 lg:row-start-1 lg:row-end-1">
+          <Details championData={championData} />
         </div>
       </div>
     </main>
