@@ -8,6 +8,12 @@ const fontSatoshi = localFont({
 
 import './globals.css';
 
+export const metadata = {
+  title: 'LoL Champ Wiki',
+  description:
+    'A site to discover the different champions available for the popular moba game League of Legends.',
+};
+
 export default async function RootLayout({
   children,
 }: {

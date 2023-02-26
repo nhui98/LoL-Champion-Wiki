@@ -1,7 +1,18 @@
 import { fetchChampionData } from '@/api/c-dragon';
 import Details from '@/components/details';
 import Skins from '@/components/skins';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const championData = await fetchChampionData(Number(params.id));
+
+  return { title: championData?.name };
+}
 
 export default async function ChampionDetails({
   params,
