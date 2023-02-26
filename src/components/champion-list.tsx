@@ -26,7 +26,7 @@ export default function ChampionList({ championData }: ChampionListProps) {
     <section className="mt-20">
       {filteredChampions && filteredChampions.length ? (
         <motion.ul
-          className="mx-auto grid w-full max-w-7xl grid-cols-[repeat(2,minmax(0,150px))] place-content-center gap-8 px-4 sm:grid-cols-[repeat(3,minmax(0,150px))] sm:gap-12 sm:px-8 md:grid-cols-[repeat(4,minmax(0,150px))] lg:grid-cols-5"
+          className="mx-auto grid min-h-screen w-full max-w-7xl grid-cols-[repeat(2,minmax(0,150px))] justify-center gap-8 px-4 sm:grid-cols-[repeat(3,minmax(0,150px))] sm:gap-12 sm:px-8 md:grid-cols-[repeat(4,minmax(0,150px))] lg:grid-cols-5"
           key={roleFilter}
         >
           {filteredChampions.map((champion, i) => (
