@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { Dispatch, SetStateAction } from 'react';
 import { Panel } from './details';
+import { motion, Variants } from 'framer-motion';
 
 type DetailsHeaderProps = {
   id: number;
@@ -19,6 +20,29 @@ const tabs = [
   },
 ] as const;
 
+const parent: Variants = {
+  initial: {},
+  animate: {
+    transition: {
+      staggerChildren: 0.25,
+    },
+  },
+};
+
+const children: Variants = {
+  initial: {
+    y: 100,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 1,
+    },
+  },
+};
+
 export default function DetailsHeader({
   id,
   panel,
@@ -27,20 +51,26 @@ export default function DetailsHeader({
   return (
     <header>
       <div className="mt-10 flex justify-between px-8">
-        <div className="flex flex-col gap-8">
+        <motion.div
+          className="flex flex-col gap-8"
+          initial="initial"
+          animate="animate"
+          variants={parent}
+        >
           {tabs.map((tab) => (
-            <div
+            <motion.div
               key={tab.title}
               className="relative cursor-pointer"
               onClick={() => setPanel(tab.title)}
+              variants={children}
             >
               <span className="relative">
                 <span
                   className={clsx(
-                    'transition-colors duration-300',
+                    'font-bold',
                     panel === tab.title
-                      ? 'text-lg font-bold'
-                      : 'text-base font-bold text-zinc-900/40'
+                      ? 'text-lg'
+                      : 'text-base text-zinc-900/40'
                   )}
                 >
                   {tab.number}
@@ -62,14 +92,19 @@ export default function DetailsHeader({
               >
                 {tab.title}
               </span>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="flex items-center space-x-2">
+        <motion.div
+          className="flex items-center space-x-2"
+          initial={{ opacity: 0 }}
+          animate="animate"
+          variants={children}
+        >
           <span className="text-base font-medium">ID</span>
           <span className="text-5xl font-bold">{id}</span>
-        </div>
+        </motion.div>
       </div>
     </header>
   );

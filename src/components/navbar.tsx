@@ -5,7 +5,7 @@ import { useStore } from '@/store/zustand';
 import { ChampionSummary } from '@/types';
 import { Combobox, Transition, Listbox } from '@headlessui/react';
 import clsx from 'clsx';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const filterLinks = {
@@ -45,6 +45,13 @@ export default function Navbar({
   const searchFilter = useStore((state) => state.searchFilter);
   const setSearchFilter = useStore((state) => state.setSearchFilter);
   const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    return () => {
+      setQuery('');
+      setSearchFilter(null);
+    };
+  }, [setSearchFilter]);
 
   const filteredChampions =
     query === ''
@@ -126,6 +133,12 @@ export default function Navbar({
 function NavFilter() {
   const roleFilter = useStore((state) => state.roleFilter);
   const setRoleFilter = useStore((state) => state.setRoleFilter);
+
+  useEffect(() => {
+    return () => {
+      setRoleFilter('all');
+    };
+  }, [setRoleFilter]);
 
   return (
     <>

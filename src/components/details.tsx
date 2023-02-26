@@ -1,9 +1,9 @@
 'use client';
 
-import { AbilityKey, ChampionData } from '@/types';
+import { ChampionData } from '@/types';
 import { useState } from 'react';
 import DetailsAbilities from './details-abilities';
-import DetailsDescription from './details-description';
+import DetailsOverview from './details-overview';
 import DetailsHeader from './details-header';
 
 type DetailsProps = {
@@ -20,7 +20,7 @@ export default function Details({ championData }: DetailsProps) {
       <DetailsHeader id={championData.id} panel={panel} setPanel={setPanel} />
 
       {panel === 'Overview' ? (
-        <DetailsDescription
+        <DetailsOverview
           playstyleInfo={championData.playstyleInfo}
           roles={championData.roles}
           shortBio={championData.shortBio}
