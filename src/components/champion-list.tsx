@@ -16,6 +16,7 @@ type ChampionListProps = {
 export default function ChampionList({ championData }: ChampionListProps) {
   const championList = useChampionList(championData);
   const searchFilter = useStore((state) => state.searchFilter);
+  const roleFilter = useStore((state) => state.roleFilter);
 
   const filteredChampions = !searchFilter
     ? championList
@@ -24,11 +25,14 @@ export default function ChampionList({ championData }: ChampionListProps) {
   return (
     <section className="mt-20">
       {filteredChampions && filteredChampions.length ? (
-        <ul className="mx-auto grid w-full max-w-7xl grid-cols-[repeat(2,minmax(0,150px))] place-content-center gap-8 px-4 sm:grid-cols-[repeat(3,minmax(0,150px))] sm:gap-12 sm:px-8 md:grid-cols-[repeat(4,minmax(0,150px))] lg:grid-cols-5">
+        <motion.ul
+          className="mx-auto grid w-full max-w-7xl grid-cols-[repeat(2,minmax(0,150px))] place-content-center gap-8 px-4 sm:grid-cols-[repeat(3,minmax(0,150px))] sm:gap-12 sm:px-8 md:grid-cols-[repeat(4,minmax(0,150px))] lg:grid-cols-5"
+          key={roleFilter}
+        >
           {filteredChampions.map((champion, i) => (
             <ChampionCard key={champion.id} champion={champion} index={i} />
           ))}
-        </ul>
+        </motion.ul>
       ) : (
         <div className="flex w-full justify-center tracking-wide">
           No champions found.

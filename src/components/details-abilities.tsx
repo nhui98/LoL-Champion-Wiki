@@ -3,12 +3,38 @@ import { AbilityKey, Passive, Spell } from '@/types';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { Dispatch, SetStateAction, useState } from 'react';
+import { motion, Variants } from 'framer-motion';
 
 type DetailsAbilitiesProps = {
   name: string;
   id: number;
   spells: Spell[];
   passive: Passive;
+};
+
+const parent: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      staggerChildren: 0.25,
+    },
+  },
+};
+
+const children: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.25,
+    },
+  },
 };
 
 export default function DetailsAbilities({
@@ -34,7 +60,12 @@ export default function DetailsAbilities({
 
   return (
     <>
-      <div className="relative mt-10 flex justify-center gap-4 py-10 sm:gap-8">
+      <motion.div
+        className="relative mt-10 flex justify-center gap-4 py-10 sm:gap-8"
+        initial="initial"
+        animate="animate"
+        variants={parent}
+      >
         {(['p', 'q', 'w', 'e', 'r'] as const).map((ability) => (
           <Ability
             key={ability}
@@ -46,7 +77,7 @@ export default function DetailsAbilities({
           />
         ))}
         <div className="absolute bottom-0 left-0 h-0.5 w-full bg-black" />
-      </div>
+      </motion.div>
 
       <div className="mt-40 px-4 sm:px-8">
         <div className="relative mx-auto flex max-w-lg flex-col gap-4 border border-zinc-50 bg-white px-4 py-8 drop-shadow-large sm:px-8">
@@ -54,7 +85,8 @@ export default function DetailsAbilities({
             {abilities[activeAbility]?.abilityVideoPath ? (
               <div className="rounded-full border-2 border-zinc-900 p-1">
                 <div className="flex h-80 w-80 items-center justify-center overflow-hidden rounded-full bg-center">
-                  <video
+                  <motion.video
+                    key={activeAbility}
                     src={fetchAbilityVideo(
                       abilities[activeAbility]?.abilityVideoPath
                     )}
@@ -63,6 +95,9 @@ export default function DetailsAbilities({
                     muted
                     playsInline
                     className="h-full w-full object-cover"
+                    initial="initial"
+                    animate="animate"
+                    variants={children}
                   />
                 </div>
               </div>
@@ -102,7 +137,10 @@ function Ability({
   setActiveAbility,
 }: AbilityProps) {
   return (
-    <div className="relative h-12 w-12 rounded-sm border-2 border-zinc-900">
+    <motion.div
+      className="relative h-12 w-12 rounded-sm border-2 border-zinc-900"
+      variants={children}
+    >
       <div className="cursor-pointer" onClick={() => setActiveAbility(ability)}>
         <Image
           src={fetchChampionAbility(championId, ability)}
@@ -122,6 +160,6 @@ function Ability({
         </div>
         <div className="h-4 w-0.5 bg-black" />
       </div>
-    </div>
+    </motion.div>
   );
 }
