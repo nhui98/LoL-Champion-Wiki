@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
+import clsx from 'clsx';
 
 function BackIcon({ className }: { className: string }) {
   return (
@@ -157,16 +158,19 @@ export default function Skins({ championData }: SkinsProps) {
             animate="animate"
             variants={skinParent}
           >
-            {skins.map((skin) => (
+            {skins.map((s) => (
               <motion.div
-                className="mt-2 h-16 w-16 cursor-pointer rounded-sm border-2 border-zinc-700"
-                key={skin.id}
-                onClick={() => setSkin(skin)}
+                className={clsx(
+                  'mt-2 h-16 w-16 cursor-pointer rounded-sm border-2 ',
+                  s === skin ? 'border-role-mage' : 'border-zinc-700'
+                )}
+                key={s.id}
+                onClick={() => setSkin(s)}
                 variants={skinChild}
               >
                 <Image
-                  src={fetchChampionTile(id, skin.id)}
-                  alt={skin.name}
+                  src={fetchChampionTile(id, s.id)}
+                  alt={s.name}
                   width={64}
                   height={64}
                   className="h-full w-full object-cover"
@@ -201,17 +205,20 @@ export default function Skins({ championData }: SkinsProps) {
           animate="animate"
           variants={skinParent}
         >
-          {skins.map((skin) => (
+          {skins.map((s) => (
             <motion.div
-              className="mt-2 h-16 w-16 cursor-pointer rounded-sm border-2 border-zinc-700"
-              key={skin.id}
-              onClick={() => setSkin(skin)}
+              className={clsx(
+                'mt-2 h-16 w-16 cursor-pointer rounded-sm border-2 ',
+                s === skin ? 'border-role-mage' : 'border-zinc-700'
+              )}
+              key={s.id}
+              onClick={() => setSkin(s)}
               variants={skinChild}
             >
               <Image
-                src={fetchChampionTile(id, skin.id)}
-                alt={skin.name}
-                key={skin.id}
+                src={fetchChampionTile(id, s.id)}
+                alt={s.name}
+                key={s.id}
                 width={64}
                 height={64}
                 className="h-full w-full object-cover"

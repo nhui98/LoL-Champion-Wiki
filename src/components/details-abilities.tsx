@@ -137,16 +137,20 @@ function Ability({
   setActiveAbility,
 }: AbilityProps) {
   return (
-    <motion.div
-      className="relative h-12 w-12 rounded-sm border-2 border-zinc-900"
-      variants={children}
-    >
-      <div className="cursor-pointer" onClick={() => setActiveAbility(ability)}>
+    <motion.div className="relative h-12 w-12" variants={children}>
+      <div
+        className={clsx(
+          'cursor-pointer rounded-sm border-2 transition-transform duration-300 hover:-translate-y-2',
+          activeAbility === ability ? 'border-role-mage' : 'border-zinc-500 '
+        )}
+        onClick={() => setActiveAbility(ability)}
+      >
         <Image
           src={fetchChampionAbility(championId, ability)}
-          alt={`${championName} p`}
+          alt={`${championName} ${ability}`}
           width={48}
           height={48}
+          className="h-full w-full object-cover"
         />
       </div>
       <div className="absolute -bottom-10 flex w-full flex-col items-center justify-center">
