@@ -47,7 +47,7 @@ const variants: Variants = {
   show: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { type: 'spring', delay: i * 0.2 },
+    transition: { type: 'spring', delay: i * 0.1, bounce: 0.4 },
   }),
 };
 

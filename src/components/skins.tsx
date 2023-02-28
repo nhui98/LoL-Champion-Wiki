@@ -5,7 +5,7 @@ import { ChampionData } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion, Variants, AnimatePresence } from 'framer-motion';
 
 function BackIcon({ className }: { className: string }) {
   return (
@@ -18,16 +18,6 @@ function BackIcon({ className }: { className: string }) {
 
 type SkinsProps = {
   championData: ChampionData;
-};
-
-const imageVariant: Variants = {
-  initial: { opacity: 0 },
-  animate: {
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-    },
-  },
 };
 
 const skinParent: Variants = {
@@ -81,33 +71,46 @@ export default function Skins({ championData }: SkinsProps) {
           <BackIcon className="h-8 w-8 fill-zinc-50" />
         </Link>
 
-        <motion.div initial="initial" animate="animate" variants={imageVariant}>
-          <Image
-            src={fetchChampionSplash(id, skin.id)}
-            alt={name}
-            fill
-            className="absolute z-10 h-full w-full object-cover"
-            priority
-          />
-          <div className="absolute inset-0 z-10 h-full w-full bg-zinc-900/80 bg-gradient-to-b from-[rgba(17,17,19,0.8)] via-[rgba(17,17,19,0.2)] to-[rgba(17,17,19,0.8)]" />
-        </motion.div>
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={skin.id}
+            className="absolute z-10 min-h-screen w-full"
+            initial="initial"
+            animate="animate"
+            exit={{ opacity: 0 }}
+            variants={{
+              initial: { opacity: 0 },
+              animate: {
+                opacity: 1,
+                transition: {
+                  duration: 2,
+                },
+              },
+            }}
+          >
+            <Image
+              src={fetchChampionSplash(id, skin.id)}
+              alt={name}
+              fill
+              sizes="(min-width: 1024px) 60vw, 100vw"
+              className="absolute h-full w-full object-cover"
+              priority
+            />
+            <div className="absolute inset-0 h-full w-full bg-zinc-900/80 bg-gradient-to-b from-[rgba(17,17,19,0.8)] via-[rgba(17,17,19,0.2)] to-[rgba(17,17,19,0.8)]" />
 
-        <motion.div
-          key={skin.id}
-          className="absolute inset-4 z-10 sm:inset-12 lg:inset-24"
-          initial="initial"
-          animate="animate"
-          variants={imageVariant}
-        >
-          <Image
-            src={fetchChampionSplash(id, skin.id)}
-            alt={name}
-            fill
-            className="relative h-full w-full object-cover drop-shadow-xlarge"
-            priority
-          />
-          <div className="relative inset-0 h-full w-full bg-zinc-900/30 bg-gradient-to-b from-[rgba(17,17,19,1)] via-[rgba(17,17,19,0.5)]  to-[rgba(17,17,19,1)]" />
-        </motion.div>
+            <div className="absolute inset-4 z-10 sm:inset-12 lg:inset-24">
+              <Image
+                src={fetchChampionSplash(id, skin.id)}
+                alt={name}
+                fill
+                sizes="(min-width: 1024px) 60vw, 100vw"
+                className="relative h-full w-full object-cover drop-shadow-xlarge"
+                priority
+              />
+              <div className="relative inset-0 h-full w-full bg-zinc-900/30 bg-gradient-to-b from-[rgba(17,17,19,1)] via-[rgba(17,17,19,0.5)]  to-[rgba(17,17,19,1)]" />
+            </div>
+          </motion.div>
+        </AnimatePresence>
 
         <div className="absolute bottom-0 left-0 z-30 flex h-60 w-full flex-col items-center justify-center gap-4">
           <motion.h1
